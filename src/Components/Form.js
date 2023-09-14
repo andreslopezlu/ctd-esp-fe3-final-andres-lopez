@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import Validacion from '../Components/Validacion'
 
-
-const Form = () => {
+export default function Form() {
   //Aqui deberan implementar el form completo con sus validaciones
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [validacion, setValidacion] = useState(null);
 
   function isValidName(name) {
     let result = null;
@@ -29,16 +30,13 @@ const Form = () => {
   }
 
   function handleSubmit(e){
+
     e.preventDefault();
 
     const validName = isValidName(name);
     const validEmail = isValidEmail(email);
 
-    if (validName && validEmail){
-      alert(`Gracias ${name}, te contactaremos cuando antes vía mail`)
-    } else {
-      alert("Por favor verifique su información nuevamente")
-    }
+    setValidacion(validName && validEmail);
   }
 
   return (
@@ -50,8 +48,10 @@ const Form = () => {
           <input type="email" placeholder="Email" id="email" value={email} onChange={(e)=>setEmail(e.target.value)}></input>
         <button type="submit" onClick={handleSubmit}>Enviar</button>
       </form>
+      <div>
+        <Validacion validacion={validacion} nombre={name} />
+      </div>
     </div>
   );
 };
 
-export default Form;
