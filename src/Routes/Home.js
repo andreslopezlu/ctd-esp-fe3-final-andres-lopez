@@ -16,7 +16,7 @@ const Home = () => {
 
   let dentistsList = dentists.map((person)=>{
     return(
-      <li key={person.id}> {person.id} -- {person.name} -- {person.usename} -- {person.email} </li>
+      <li key={person.id}> {person.id} -- {person.name} -- {person.username} -- {person.email} </li>
     )
   })
 
