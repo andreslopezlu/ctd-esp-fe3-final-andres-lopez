@@ -20,6 +20,7 @@ function themeReducer(state, action) {
 }
 
 export default function ThemeProvider({children}) {
+  
   const [state, dispatch] = useReducer(themeReducer, initialTheme)
 
   return(
