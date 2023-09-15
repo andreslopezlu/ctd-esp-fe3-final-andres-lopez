@@ -3,6 +3,7 @@ import Layout from "./Components/Layout";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import DentistProvider from './context/DentistApiContext.js';
 
 export default function App() {
   return (
@@ -10,7 +11,9 @@ export default function App() {
       <Layout>
         <div className="App">
           <Navbar/>
-            <Outlet/>
+            <DentistProvider>
+              <Outlet/>
+            </DentistProvider>
           <Footer/>
         </div>
       </Layout>
