@@ -18,8 +18,6 @@ export default function DentistProvider({children}){
         const dataConverted = await data.json();
         setData(dataConverted)
     }
-    
-    // const [state, dispatch] = useReducer(getDataDentistReducer, initialState, init)
 
     return(
         <DentistContext.Provider value={{data, setData, getData}}>
