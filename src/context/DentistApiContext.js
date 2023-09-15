@@ -2,12 +2,6 @@ import { createContext, useEffect, useReducer, useState } from "react";
 
 export const DentistContext = createContext();
 
-// function getDataDentistReducer(state, action){
-
-// }  
-
-// const initialState = {}
-
 export default function DentistProvider({children}){
     
     const [data, setData] = useState([])
