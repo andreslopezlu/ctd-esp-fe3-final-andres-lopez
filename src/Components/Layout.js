@@ -7,7 +7,7 @@ export default function Layout({children}) {
   const darkMode = theme.state.darkMode;
 
   return (
-    <div className={`bg ${darkMode ? "bg-dark" : "bg-light"}`}>
+    <div className={`main-container ${darkMode ? "bg-dark" : "bg-light"}`}>
       {children}
     </div>
   )

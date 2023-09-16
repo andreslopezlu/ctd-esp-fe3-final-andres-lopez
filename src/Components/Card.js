@@ -1,52 +1,53 @@
 import React from "react";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { FavoritesContext } from "../context/FavoritesContext";
 
-import { useState, useMemo } from "react";
-
-
-const Card = ({ id, name, username, email, dentists }) => {
+const Card = ({ id, name, username, email, dentists, style}) => {
 
   let [favorite, setFavorite] = useState(false);
-  
 
-  // const params = useMemo(() => (JSON.parse(localStorage.getItem('favs'))), []);
+  let favoritesData = useContext(FavoritesContext);
+
+  let localData = favoritesData.favorites;
+
+  let updateFavorites = favoritesData.update;
 
   function handleClick(id) {
 
-    let localData = JSON.parse(localStorage.getItem('favs'))
+    let copyLocalData = [...localData]
+
+    const dentistIndex = localData.findIndex(
+      (dentist) => dentist.id === id
+    );
 
     if(favorite===false){
+      
       setFavorite(true)
-      let newTrueFavorites = [...localData]
-      newTrueFavorites.push(dentists[id-1]) 
-      localStorage.setItem('favs', JSON.stringify(newTrueFavorites)) 
+      copyLocalData.push(dentists[id-1]) 
+      updateFavorites(copyLocalData) 
       return;
     } 
     
     if (favorite===true){
       setFavorite(false)
-      let newFalseFavorites = [...localData]
-      const dentistIndex = newFalseFavorites.findIndex(
-        (dentist) => dentist.id === id
-      );
-      newFalseFavorites.splice(dentistIndex, 1)
-      localStorage.setItem('favs', JSON.stringify(newFalseFavorites))
+      copyLocalData.splice(dentistIndex, 1)
+      updateFavorites(copyLocalData) 
       return;
     }
   }
 
   return (
     <div className="card">
-        {/* En cada card deberan mostrar en name - username y el id */}
-
-        {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
-
-        {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-        <img src='' alt='dentist'/>
+        <img src='../../public/images/doctor.jpg' alt='dentist'/>
         <p>{id}</p>
         <p>{name}</p>
         <p>{username}</p>
         <p>{email}</p>
-        <button onClick={()=>handleClick(id)} className="favButton">Add fav</button>
+        <button onClick={()=>handleClick(id)} className="favButton" style={style}>Add fav</button>
+        <Link to={`${id}`}>
+          <p style={style}>Ver detalle</p>
+        </Link>
     </div>
   );
 };

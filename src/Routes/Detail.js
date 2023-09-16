@@ -1,17 +1,28 @@
-import React from 'react'
-
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import React, { useEffect, useContext } from 'react'
+import { DetailContext } from '../context/DetailContext';
+import Card from '../Components/Card';
 
 const Detail = () => {
- 
-  // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
+
+  let detailData = useContext(DetailContext);
+
+  let detail = detailData.data;
+
+  useEffect(() => {
+    detailData.getData();
+  });
 
   return (
     <>
       <h1>Detail Dentist id </h1>
-      {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
-      {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
+      {<Card 
+        key={detail.id} 
+        id={detail.id} 
+        name={detail.name} 
+        username={detail.username} 
+        email={detail.email} 
+        style={{display:'none'
+      }}/>}
     </>
   )
 }

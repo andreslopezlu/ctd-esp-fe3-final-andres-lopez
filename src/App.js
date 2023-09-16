@@ -4,6 +4,8 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import DentistProvider from './context/DentistApiContext.js';
+import FavoritesProvider from './context/FavoritesContext.js';
+import DetailProvider from './context/DetailContext.js';
 
 export default function App() {
   return (
@@ -11,9 +13,13 @@ export default function App() {
       <Layout>
         <div className="App">
           <Navbar/>
-            <DentistProvider>
-              <Outlet/>
-            </DentistProvider>
+            <FavoritesProvider>
+              <DentistProvider>
+                <DetailProvider>
+                  <Outlet/>
+                </DetailProvider>
+              </DentistProvider>
+            </FavoritesProvider>
           <Footer/>
         </div>
       </Layout>

@@ -1,14 +1,10 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useState } from "react";
 
 export const DentistContext = createContext();
 
 export default function DentistProvider({children}){
     
     const [data, setData] = useState([])
-
-    // useEffect(() => {
-    //     localStorage.setItem('favs', JSON.stringify([]))
-    // }, []);
 
     const getData = async () => {
         const data = await

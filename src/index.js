@@ -8,6 +8,7 @@ import App from './App.js'
 import Home from './Routes/Home.js'
 import Contact from './Routes/Contact.js'
 import Favs from './Routes/Favs.js'
+import Detail from './Routes/Detail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,6 +21,7 @@ root.render(
           <Route path='home' element={<Home />} />
           <Route path='contact' element={<Contact />} />
           <Route path='favs' element={<Favs />} />
+          <Route path='home/:id' element={<Detail/>} />
         </Route>
       </Routes>
     </BrowserRouter>
