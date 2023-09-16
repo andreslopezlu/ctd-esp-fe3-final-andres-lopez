@@ -6,6 +6,10 @@ export default function DentistProvider({children}){
     
     const [data, setData] = useState([])
 
+    // useEffect(() => {
+    //     localStorage.setItem('favs', JSON.stringify([]))
+    // }, []);
+
     const getData = async () => {
         const data = await
         fetch('https://jsonplaceholder.typicode.com/users')
